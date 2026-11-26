@@ -72,6 +72,17 @@ public class FormController {
     @FXML
     public void initialize(){
         cmbEspecie.setItems(FXCollections.observableArrayList(Perro.especie, Gato.especie));
+        cmbEstado.setItems(FXCollections.observableArrayList("Ingresado", "En Consulta", "En Observacion", "Alta Medica"));
+        cmbTamanoPerro.setItems(FXCollections.observableArrayList("Pequeño","Mediano","Grande"));
+        cmbNivelAd.setItems(FXCollections.observableArrayList("Basico","Intermedio","Avanzado"));
+        cmbTipoPelaje.setItems(FXCollections.observableArrayList("Corto","Regular","Largo"));
+        cmbEstiloVida.setItems(FXCollections.observableArrayList("Outdoor","Indoor"));
+    }
+
+    @FXML
+    public void registrar(){
+        String rut = txtRutTutor.getText();
+
     }
 
 }
