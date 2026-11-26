@@ -27,15 +27,22 @@ public class Perro extends Mascota implements Vacunable{
     }
 
     public void setTamano(String tamano) {
-        this.tamano = tamano;
+        if(tamano == null || tamano.isEmpty()){
+            throw new IllegalArgumentException("El tamaño no debe ser nulo.");
+        }
+        this.tamano = tamano.trim();
     }
 
     public String getAdiestramiento() {
+
         return adiestramiento;
     }
 
     public void setAdiestramiento(String adiestramiento) {
-        this.adiestramiento = adiestramiento;
+        if(adiestramiento == null || adiestramiento.isEmpty()){
+            throw new IllegalArgumentException("El adiestramiento no debe ser nulo.");
+        }
+        this.adiestramiento = adiestramiento.trim();
     }
 
     public boolean isVacuna() {

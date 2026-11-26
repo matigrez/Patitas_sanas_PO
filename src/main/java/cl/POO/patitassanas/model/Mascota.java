@@ -43,7 +43,7 @@ public abstract class Mascota implements Vacunable{
         if(nombre == null || nombre.isEmpty()){
             throw new IllegalArgumentException("El nombre no debe estar vacio.");
         }
-        this.nombre = nombre;
+        this.nombre = nombre.trim();
     }
 
     public int getMeses() {
