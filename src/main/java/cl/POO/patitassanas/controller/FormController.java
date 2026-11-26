@@ -2,6 +2,7 @@ package cl.POO.patitassanas.controller;
 
 import cl.POO.patitassanas.model.Gato;
 import cl.POO.patitassanas.model.Perro;
+import cl.POO.patitassanas.model.Tutor;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -14,6 +15,9 @@ public class FormController {
 
     @FXML
     private VBox boxPerro;
+
+    @FXML
+    private VBox boxGato;
 
     @FXML
     private Button btnBuscarTutor;
@@ -80,8 +84,30 @@ public class FormController {
     }
 
     @FXML
+    private void actualizarBox() {
+        String tipo = cmbEspecie.getValue();
+        // Deshabilitar el contenedor deshabilita a sus controles hijos.
+        // Los dos grupos permanecen visibles: no usamos setVisible ni setManaged.
+        boxPerro.setDisable(!"Perro".equals(tipo));
+        boxGato.setDisable(!"Gato".equals(tipo));
+    }
+
+
+    @FXML
     public void registrar(){
         String rut = txtRutTutor.getText();
+        String nombre = txtNombreTutor.getText();
+        String correo = txtCorreo.getText();
+        String telefono = txtTelefono.getText();
+        Tutor tutor = new Tutor(rut,nombre,correo,telefono);
+        String especie = cmbEspecie.getValue();
+        if(especie.equals("Perro")){
+            
+        } else if (especie.equals("Gato")) {
+            
+        }else{
+            throw new IllegalArgumentException("Especie no puede estar nula");
+        }
 
     }
 
