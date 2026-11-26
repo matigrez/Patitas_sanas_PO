@@ -14,11 +14,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
+
+<?import javafx.scene.control.CheckBox?>
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
-=======
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
->>>>>>> 40fec1e3c09cf8d8db8ce37a7d63e92fa8e4e609
 
    <top>
       <VBox prefHeight="70.0" prefWidth="640.0" spacing="4.0" style="-fx-background-color: #1B365D;" BorderPane.alignment="CENTER">
