@@ -8,14 +8,14 @@ public class Tutor {
     private String nombre;
     private String correo;
     private String numero;
-    private List<Mascota> mascotas = new ArrayList<>();
+    private List<Mascota> mascotas;
 
-    public Tutor(String rut, String nombre, String correo, String numero, List<Mascota> mascotas) {
-        this.rut = rut;
-        this.nombre = nombre;
-        this.correo = correo;
-        this.numero = numero;
-        this.mascotas = mascotas;
+    public Tutor(String rut, String nombre, String correo, String numero) {
+        setRut(rut);
+        setNombre(nombre);
+        setCorreo(correo);
+        setNumero(numero);
+        this.mascotas = new ArrayList<>();
     }
 
     public String getRut() {
@@ -23,7 +23,10 @@ public class Tutor {
     }
 
     public void setRut(String rut) {
-        this.rut = rut;
+        if(rut == null || rut.isEmpty()){
+            throw new IllegalArgumentException("El rut no debe ser nulo.");
+        }
+        this.rut = rut.trim();
     }
 
     public String getNombre() {
@@ -31,7 +34,10 @@ public class Tutor {
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        if(nombre == null || nombre.isEmpty()){
+            throw new IllegalArgumentException("El nombre no debe ser nulo.");
+        }
+        this.nombre = nombre.trim();
     }
 
     public String getCorreo() {
@@ -39,7 +45,10 @@ public class Tutor {
     }
 
     public void setCorreo(String correo) {
-        this.correo = correo;
+        if(correo == null || correo.isEmpty()){
+            throw new IllegalArgumentException("El correo no debe ser nulo.");
+        }
+        this.correo = correo.trim();
     }
 
     public String getNumero() {
@@ -47,7 +56,10 @@ public class Tutor {
     }
 
     public void setNumero(String numero) {
-        this.numero = numero;
+        if(numero == null || numero.isEmpty()){
+            throw new IllegalArgumentException("El numero no debe ser nulo.");
+        }
+        this.numero = numero.trim();
     }
 
     public List<Mascota> getMascotas() {

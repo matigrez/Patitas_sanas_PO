@@ -8,23 +8,23 @@ public abstract class Mascota implements Vacunable{
     private int meses;
     private double peso;
     private String estadoClinico;
-    private ArrayList<String> vacunas = new ArrayList<>();
+    private ArrayList<String> vacunas;
 
-    public Mascota(String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
+    public Mascota(String nombre, int meses, double peso, String estadoClinico) {
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
         setEstadoClinico(estadoClinico);
-        setVacunas(vacunas);
+        this.vacunas = new ArrayList<>();
     }
 
-    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
+    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico) {
         setId(id);
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
         setEstadoClinico(estadoClinico);
-        setVacunas(vacunas);
+        this.vacunas = new ArrayList<>();
     }
 
     public int getId() {

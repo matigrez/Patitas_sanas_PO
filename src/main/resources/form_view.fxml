@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
+=======
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
+>>>>>>> 40fec1e3c09cf8d8db8ce37a7d63e92fa8e4e609
 
    <top>
       <VBox prefHeight="70.0" prefWidth="640.0" spacing="4.0" style="-fx-background-color: #1B365D;" BorderPane.alignment="CENTER">
@@ -172,7 +185,7 @@
                         <ComboBox fx:id="cmbNivelAd" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Seleccione..." />
                      </children>
                   </VBox>
-                  <VBox prefHeight="200.0" prefWidth="100.0" spacing="8.0" style="-fx-background-color: #CBD5E1; -fx-border-radius: 5; -fx-padding: 10;" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="boxGato" prefHeight="200.0" prefWidth="100.0" spacing="8.0" style="-fx-background-color: #CBD5E1; -fx-border-radius: 5; -fx-padding: 10;" HBox.hgrow="ALWAYS">
                      <children>
                         <Label text="Datos del Gato" textFill="#1b365d">
                            <font>
