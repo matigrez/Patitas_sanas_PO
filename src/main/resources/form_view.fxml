@@ -14,7 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
+=======
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/27.0.1.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
+>>>>>>> 40fec1e3c09cf8d8db8ce37a7d63e92fa8e4e609
 
    <top>
       <VBox prefHeight="70.0" prefWidth="640.0" spacing="4.0" style="-fx-background-color: #1B365D;" BorderPane.alignment="CENTER">
@@ -53,7 +57,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <GridPane hgap="15.0" prefHeight="281.0" prefWidth="660.0" vgap="10.0">
+            <GridPane hgap="15.0" prefHeight="104.0" prefWidth="660.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="50.0" prefWidth="100.0" />
@@ -108,7 +112,7 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <GridPane hgap="15.0" prefHeight="384.0" prefWidth="660.0" vgap="10.0">
+            <GridPane hgap="15.0" prefHeight="234.0" prefWidth="660.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" percentWidth="33.3" prefWidth="100.0" />
@@ -134,7 +138,8 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="4.0" GridPane.columnIndex="2">
                      <children>
                         <Label text="Apto para Vacunar?" />
-                        <ComboBox fx:id="cmbVacuna" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Seleccione..." />
+                        <CheckBox fx:id="chkVacunable" mnemonicParsing="false" text="Si/No" />
+                        <TextField fx:id="txtNombreVacuna" disable="true" promptText="Ingrese el nombre de la vacuna" />
                         <Label text="Especie:" />
                         <ComboBox fx:id="cmbEspecie" maxWidth="1.7976931348623157E308" prefWidth="150.0" promptText="Seleccione..." />
                      </children>
