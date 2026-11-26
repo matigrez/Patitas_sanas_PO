@@ -84,6 +84,7 @@ public class FormController {
         cmbNivelAd.setItems(FXCollections.observableArrayList("Basico","Intermedio","Avanzado"));
         cmbTipoPelaje.setItems(FXCollections.observableArrayList("Corto","Regular","Largo"));
         cmbEstiloVida.setItems(FXCollections.observableArrayList("Outdoor","Indoor"));
+        cmbVacuna.setItems(FXCollections.observableArrayList("Necesita vacuna","No necesita vacuna"));
     }
 
     @FXML

@@ -86,9 +86,5 @@ public abstract class Mascota implements Vacunable{
         return vacunas;
     }
 
-    public void setVacunas(ArrayList<String> vacunas) {
-        this.vacunas = vacunas;
-    }
-
     public abstract int calcularPrecio(String condicional);
 }
