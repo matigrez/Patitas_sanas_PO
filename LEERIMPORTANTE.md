@@ -1,5 +1,5 @@
 
-# Clínica Veterinaria "Patitas Sanas" 
+# Clínica Veterinaria "Patitas Sanas" pu
 
 Proyecto de escritorio en Java + JavaFX para la gestión de fichas clínicas, tutores y costos estimados de atención médica.
 
