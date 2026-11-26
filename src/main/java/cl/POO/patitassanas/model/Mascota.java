@@ -7,20 +7,23 @@ public abstract class Mascota implements Vacunable{
     private String nombre;
     private int meses;
     private double peso;
+    private String estadoClinico;
     private ArrayList<String> vacunas = new ArrayList<>();
 
-    public Mascota(String nombre, int meses, double peso, ArrayList<String> vacunas) {
+    public Mascota(String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
+        setEstadoClinico(estadoClinico);
         setVacunas(vacunas);
     }
 
-    public Mascota(int id, String nombre, int meses, double peso, ArrayList<String> vacunas) {
+    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
         setId(id);
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
+        setEstadoClinico(estadoClinico);
         setVacunas(vacunas);
     }
 
@@ -66,6 +69,17 @@ public abstract class Mascota implements Vacunable{
             throw new IllegalArgumentException("El peso debe estar entre 0 y 100");
         }
         this.peso = peso;
+    }
+
+    public String getEstadoClinico() {
+        return estadoClinico;
+    }
+
+    public void setEstadoClinico(String estadoClinico) {
+        if(estadoClinico == null || estadoClinico.isEmpty()){
+            throw new IllegalArgumentException("El estado clinico no debe estar vacio.");
+        }
+        this.estadoClinico = estadoClinico.trim();
     }
 
     public ArrayList<String> getVacunas() {

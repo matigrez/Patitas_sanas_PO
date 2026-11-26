@@ -1,5 +1,8 @@
 package cl.POO.patitassanas.controller;
 
+import cl.POO.patitassanas.model.Gato;
+import cl.POO.patitassanas.model.Perro;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -22,22 +25,22 @@ public class FormController {
     private Button btnGuardar;
 
     @FXML
-    private ComboBox<?> cmbEspecie;
+    private ComboBox<String> cmbEspecie;
 
     @FXML
-    private ComboBox<?> cmbEstado;
+    private ComboBox<String> cmbEstado;
 
     @FXML
-    private ComboBox<?> cmbEstiloVida;
+    private ComboBox<String> cmbEstiloVida;
 
     @FXML
-    private ComboBox<?> cmbNivelAd;
+    private ComboBox<String> cmbNivelAd;
 
     @FXML
-    private ComboBox<?> cmbTamanoPerro;
+    private ComboBox<String> cmbTamanoPerro;
 
     @FXML
-    private ComboBox<?> cmbTipoPelaje;
+    private ComboBox<String> cmbTipoPelaje;
 
     @FXML
     private Label lblTituloFormulario;
@@ -68,7 +71,7 @@ public class FormController {
 
     @FXML
     public void initialize(){
-
+        cmbEspecie.setItems(FXCollections.observableArrayList(Perro.especie, Gato.especie));
     }
 
 }

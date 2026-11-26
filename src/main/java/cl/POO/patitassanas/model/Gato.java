@@ -3,20 +3,21 @@ package cl.POO.patitassanas.model;
 import java.util.ArrayList;
 
 public class Gato extends Mascota implements Vacunable{
+    public static final String especie = "Gato";
     private static final int costoBase = 18000;
     private String estiloVida;
     private String pelaje;
     private boolean vacuna;
 
-    public Gato(String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
-        super(nombre, meses, peso, vacunas);
+    public Gato(String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
+        super(nombre, meses, peso, estadoClinico, vacunas);
         setEstiloVida(estiloVida);
         setPelaje(pelaje);
         this.vacuna = vacuna;
     }
 
-    public Gato(int id, String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
-        super(id, nombre, meses, peso, vacunas);
+    public Gato(int id, String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
+        super(id, nombre, meses, peso, estadoClinico, vacunas);
         setEstiloVida(estiloVida);
         setPelaje(pelaje);
         this.vacuna = vacuna;
