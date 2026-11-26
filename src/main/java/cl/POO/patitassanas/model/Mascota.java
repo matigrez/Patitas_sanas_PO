@@ -8,9 +8,9 @@ public abstract class Mascota implements Vacunable{
     private int meses;
     private double peso;
     private String estadoClinico;
-    private ArrayList<String> vacunas = new ArrayList<>();
+    private ArrayList<String> vacunas;
 
-    public Mascota(String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
+    public Mascota(String nombre, int meses, double peso, String estadoClinico) {
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
@@ -18,7 +18,7 @@ public abstract class Mascota implements Vacunable{
         setVacunas(vacunas);
     }
 
-    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico, ArrayList<String> vacunas) {
+    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico) {
         setId(id);
         setNombre(nombre);
         setMeses(meses);
@@ -87,7 +87,7 @@ public abstract class Mascota implements Vacunable{
     }
 
     public void setVacunas(ArrayList<String> vacunas) {
-        this.vacunas = vacunas;
+        this.vacunas = new ArrayList<>();
     }
 
     public abstract int calcularPrecio(String condicional);

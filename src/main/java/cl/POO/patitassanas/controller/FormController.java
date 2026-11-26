@@ -29,6 +29,9 @@ public class FormController {
     private Button btnGuardar;
 
     @FXML
+    private ComboBox<String> cmbVacuna;
+
+    @FXML
     private ComboBox<String> cmbEspecie;
 
     @FXML
@@ -96,12 +99,19 @@ public class FormController {
     @FXML
     public void registrar(){
         String rut = txtRutTutor.getText();
-        String nombre = txtNombreTutor.getText();
+        String nombreTutor = txtNombreTutor.getText();
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
-        Tutor tutor = new Tutor(rut,nombre,correo,telefono);
+        Tutor tutor = new Tutor(rut,nombreTutor,correo,telefono);
+        String nombreMascota = txtNombremascota.getText();
+        int meses = calcularMeses();
+        double peso = calcularPeso();
+        String vacuna = cmbVacuna.getValue();
         String especie = cmbEspecie.getValue();
         if(especie.equals("Perro")){
+            String tamano = cmbTamanoPerro.getValue();
+            String adiestramiento = cmbNivelAd.getValue();
+
             
         } else if (especie.equals("Gato")) {
             
@@ -109,6 +119,24 @@ public class FormController {
             throw new IllegalArgumentException("Especie no puede estar nula");
         }
 
+    }
+
+    public int calcularMeses(){
+        try {
+            return Integer.parseInt(txtEdadmeses.getText().trim());
+        } catch (NumberFormatException e) {
+            txtEdadmeses.requestFocus();
+            throw new IllegalArgumentException("Los meses deben estar entre 0 y 360.");
+        }
+    }
+
+    public double calcularPeso(){
+        try {
+            return Double.parseDouble(txtPeso.getText().trim());
+        } catch (NumberFormatException e) {
+            txtPeso.requestFocus();
+            throw new IllegalArgumentException("El peso debe estar entre 0 y 100 Kg");
+        }
     }
 
 }
