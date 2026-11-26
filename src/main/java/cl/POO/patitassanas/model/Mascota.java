@@ -1,9 +1,22 @@
 package cl.POO.patitassanas.model;
 
+import java.util.ArrayList;
+
 public abstract class Mascota implements Vacunable{
     private String nombre;
     private int meses;
     private double peso;
+    private ArrayList<String> vacunas = new ArrayList<>();
+
+    public Mascota() {
+    }
+
+    public Mascota(String nombre, int meses, double peso, ArrayList<String> vacunas) {
+        this.nombre = nombre;
+        this.meses = meses;
+        this.peso = peso;
+        this.vacunas = vacunas;
+    }
 
     public String getNombre() {
         return nombre;
@@ -38,5 +51,13 @@ public abstract class Mascota implements Vacunable{
         this.peso = peso;
     }
 
-    public abstract int calcularPrecio();
+    public ArrayList<String> getVacunas() {
+        return vacunas;
+    }
+
+    public void setVacunas(ArrayList<String> vacunas) {
+        this.vacunas = vacunas;
+    }
+
+    public abstract int calcularPrecio(String condicional);
 }
