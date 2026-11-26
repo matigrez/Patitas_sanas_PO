@@ -15,7 +15,7 @@ public abstract class Mascota implements Vacunable{
         setMeses(meses);
         setPeso(peso);
         setEstadoClinico(estadoClinico);
-        setVacunas(vacunas);
+        this.vacunas = new ArrayList<>();
     }
 
     public Mascota(int id, String nombre, int meses, double peso, String estadoClinico) {
@@ -24,7 +24,7 @@ public abstract class Mascota implements Vacunable{
         setMeses(meses);
         setPeso(peso);
         setEstadoClinico(estadoClinico);
-        setVacunas(vacunas);
+        this.vacunas = new ArrayList<>();
     }
 
     public int getId() {
@@ -87,7 +87,7 @@ public abstract class Mascota implements Vacunable{
     }
 
     public void setVacunas(ArrayList<String> vacunas) {
-        this.vacunas = new ArrayList<>();
+        this.vacunas = vacunas;
     }
 
     public abstract int calcularPrecio(String condicional);
