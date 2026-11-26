@@ -5,17 +5,20 @@ import java.util.ArrayList;
 public class Gato extends Mascota implements Vacunable{
     private static final int costoBase = 18000;
     private String estiloVida;
+    private String pelaje;
     private boolean vacuna;
 
-    public Gato(String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, boolean vacuna) {
+    public Gato(String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
         super(nombre, meses, peso, vacunas);
         setEstiloVida(estiloVida);
+        setPelaje(pelaje);
         this.vacuna = vacuna;
     }
 
-    public Gato(int id, String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, boolean vacuna) {
+    public Gato(int id, String nombre, int meses, double peso, ArrayList<String> vacunas, String estiloVida, String pelaje, boolean vacuna) {
         super(id, nombre, meses, peso, vacunas);
         setEstiloVida(estiloVida);
+        setPelaje(pelaje);
         this.vacuna = vacuna;
     }
 
@@ -24,7 +27,21 @@ public class Gato extends Mascota implements Vacunable{
     }
 
     public void setEstiloVida(String estiloVida) {
-        this.estiloVida = estiloVida;
+        if(estiloVida == null || estiloVida.isEmpty()){
+            throw new IllegalArgumentException("El estilo de vida no debe ser nulo.");
+        }
+        this.estiloVida = estiloVida.trim();
+    }
+
+    public String getPelaje() {
+        return pelaje;
+    }
+
+    public void setPelaje(String pelaje) {
+        if(pelaje == null || pelaje.isEmpty()){
+            throw new IllegalArgumentException("El pelaje no debe ser nulo.");
+        }
+        this.pelaje = pelaje.trim();
     }
 
     public boolean isVacuna() {

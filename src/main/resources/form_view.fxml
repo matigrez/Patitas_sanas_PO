@@ -5,7 +5,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<<<<<<< HEAD
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="730.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1">
+=======
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="660.0" prefWidth="680.0" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cl.POO.patitassanas.controller.FormController">
+>>>>>>> 5077146e90dc81f1ef650919c8d516eaeff6cfcf
    <top>
       <VBox prefHeight="70.0" prefWidth="640.0" spacing="4.0" style="-fx-background-color: #1B365D;" BorderPane.alignment="CENTER">
          <padding>
