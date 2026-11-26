@@ -13,6 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/26" xmlns:fx="http://javafx.com/fxml/1">
+    fx:controller="cl.POO.patitassanas.controller.MainController"
     <top>
         <VBox prefHeight="35.0" prefWidth="900.0" spacing="4.0" style="-fx-background-color: #1B365D;" BorderPane.alignment="CENTER">
             <padding>
