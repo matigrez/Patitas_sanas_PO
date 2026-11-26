@@ -3,19 +3,36 @@ package cl.POO.patitassanas.model;
 import java.util.ArrayList;
 
 public abstract class Mascota implements Vacunable{
+    private int id;
     private String nombre;
     private int meses;
     private double peso;
     private ArrayList<String> vacunas = new ArrayList<>();
 
-    public Mascota() {
+    public Mascota(String nombre, int meses, double peso, ArrayList<String> vacunas) {
+        setNombre(nombre);
+        setMeses(meses);
+        setPeso(peso);
+        setVacunas(vacunas);
     }
 
-    public Mascota(String nombre, int meses, double peso, ArrayList<String> vacunas) {
-        this.nombre = nombre;
-        this.meses = meses;
-        this.peso = peso;
-        this.vacunas = vacunas;
+    public Mascota(int id, String nombre, int meses, double peso, ArrayList<String> vacunas) {
+        setId(id);
+        setNombre(nombre);
+        setMeses(meses);
+        setPeso(peso);
+        setVacunas(vacunas);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        if(id < 0){
+            throw new IllegalArgumentException("El id no puede ser menor a 0");
+        }
+        this.id = id;
     }
 
     public String getNombre() {

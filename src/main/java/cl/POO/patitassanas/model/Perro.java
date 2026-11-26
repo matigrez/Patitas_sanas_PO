@@ -10,8 +10,15 @@ public class Perro extends Mascota implements Vacunable{
 
     public Perro(String nombre, int meses, double peso, ArrayList<String> vacunas, String tamano, String adiestramiento, boolean vacuna) {
         super(nombre, meses, peso, vacunas);
-        this.tamano = tamano;
-        this.adiestramiento = adiestramiento;
+        setTamano(tamano);
+        setAdiestramiento(adiestramiento);
+        this.vacuna = vacuna;
+    }
+
+    public Perro(int id, String nombre, int meses, double peso, ArrayList<String> vacunas, String tamano, String adiestramiento, boolean vacuna) {
+        super(id, nombre, meses, peso, vacunas);
+        setTamano(tamano);
+        setAdiestramiento(adiestramiento);
         this.vacuna = vacuna;
     }
 
