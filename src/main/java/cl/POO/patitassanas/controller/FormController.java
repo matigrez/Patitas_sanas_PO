@@ -77,51 +77,51 @@ public class FormController {
             }
             String nombreTutor = txtNombreTutor.getText();
             if (nombreTutor == null || nombreTutor.isBlank()) {
-                lblError.setText("El nombre del tutor es obligatorio");
+                lblError.setText("El Nombre del tutor es obligatorio");
                 return;
             }
             String correo = txtCorreo.getText();
             if (correo == null || correo.isBlank()) {
-                lblError.setText("El correo del tutor es obligatorio");
+                lblError.setText("El Correo del tutor es obligatorio");
                 return;
             }
             String telefono = txtTelefono.getText();
             if (telefono == null || telefono.isBlank()) {
-                lblError.setText("El telefono del tutor es obligatorio");
+                lblError.setText("El Telefono del tutor es obligatorio");
                 return;
             }
             Tutor tutor = new Tutor(rut,nombreTutor,correo,telefono);
             String codigo = txtCodeficha.getText();
             if (codigo == null || codigo.isBlank()) {
-                lblError.setText("El codigo del tutor es obligatorio");
+                lblError.setText("El Codigo es obligatorio");
                 return;
             }
             String nombreMascota = txtNombremascota.getText();
             if (nombreMascota == null || nombreMascota.isBlank()) {
-                lblError.setText("El nombre del tutor es obligatorio");
+                lblError.setText("El Nombre de la mascota es obligatorio");
                 return;
             }
 
             if (txtEdadmeses.getText() == null || txtEdadmeses.getText().isBlank()) {
-                lblError.setText("El edad en meses es obligatorio");
+                lblError.setText("La Edad en meses es obligatorio");
                 return;
             }
             int meses = calcularMeses();
 
             if (txtPeso.getText() == null || txtPeso.getText().isBlank()) {
-                lblError.setText("El peso es obligatorio");
+                lblError.setText("El Peso es obligatorio");
                 return;
             }
             double peso = calcularPeso();
 
             String estado = cmbEstado.getValue();
             if  (estado == null || estado.isBlank()) {
-                lblError.setText("El estado del tutor es obligatorio");
+                lblError.setText("El estado de la mascota es obligatoria");
                 return;
             }
             String especie = cmbEspecie.getValue();
             if (especie == null || especie.isBlank()) {
-                lblError.setText("El especie es obligatorio");
+                lblError.setText("La especie es obligatorio");
                 return;
             }
             if(especie.equals("Perro")){
@@ -132,7 +132,7 @@ public class FormController {
                 }
                 String adiestramiento = cmbNivelAd.getValue();
                 if (adiestramiento == null || adiestramiento.isBlank()) {
-                    lblError.setText("El nivel adiestra es obligatorio");
+                    lblError.setText("La casilla Adiestramiento es obligatoria");
                     return;
                 }
                 Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tutor,tamano,adiestramiento);
@@ -158,7 +158,7 @@ public class FormController {
                 }
                 String estiloVida = cmbEstiloVida.getValue();
                 if (estiloVida == null || estiloVida.isBlank()) {
-                    lblError.setText("El estilo vida es obligatorio");
+                    lblError.setText("La casilla estilo de vida es obligatoria");
                     return;
                 }
                 Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,tutor,pelaje,estiloVida);
