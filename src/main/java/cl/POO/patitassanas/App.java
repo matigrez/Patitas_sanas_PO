@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(App.class.getResource("main-view.fxml"));
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/main_view.fxml"));
         Scene scene = new Scene(loader.load());
         stage.setTitle("Patitas Sanas");
         stage.setScene(scene);

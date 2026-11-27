@@ -26,7 +26,7 @@ public class FormController {
     private Button btnGuardar;
 
     @FXML
-    private CheckBox chkvacunable;
+    private CheckBox chkVacunable;
 
     @FXML
     private TextField txtNombreVacuna;
@@ -84,20 +84,21 @@ public class FormController {
         cmbNivelAd.setItems(FXCollections.observableArrayList("Basico","Intermedio","Avanzado"));
         cmbTipoPelaje.setItems(FXCollections.observableArrayList("Corto","Regular","Largo"));
         cmbEstiloVida.setItems(FXCollections.observableArrayList("Outdoor","Indoor"));
+        boxPerro.setDisable(true);
+        boxGato.setDisable(true);
+        txtNombreVacuna.setDisable(true);
     }
 
     @FXML
     private void actualizarBox() {
         String tipo = cmbEspecie.getValue();
-        // Deshabilitar el contenedor deshabilita a sus controles hijos.
-        // Los dos grupos permanecen visibles: no usamos setVisible ni setManaged.
         boxPerro.setDisable(!"Perro".equals(tipo));
         boxGato.setDisable(!"Gato".equals(tipo));
     }
 
     @FXML
     private void actualizarTextField(){
-        txtNombreVacuna.setDisable(!chkvacunable.isSelected());
+        txtNombreVacuna.setDisable(!chkVacunable.isSelected());
     }
 
 
@@ -118,8 +119,8 @@ public class FormController {
             String tamano = cmbTamanoPerro.getValue();
             String adiestramiento = cmbNivelAd.getValue();
             Perro perro = new Perro(codigo,nombreMascota,meses,peso,estado,tamano,adiestramiento);
-            if(chkvacunable.isSelected()){
-                perro.setVacunable(chkvacunable.isSelected());
+            if(chkVacunable.isSelected()){
+                perro.setVacunable(chkVacunable.isSelected());
                 perro.aplicarVacuna(txtNombreVacuna.getText());
             }
             tutor.agregarMascotas(perro);
@@ -128,8 +129,8 @@ public class FormController {
             String pelaje = cmbTipoPelaje.getValue();
             String estiloVida = cmbEstiloVida.getValue();
             Gato gato = new Gato(codigo,nombreMascota,meses,peso,estado,pelaje,estiloVida);
-            if(chkvacunable.isSelected()){
-                gato.setVacunable(chkvacunable.isSelected());
+            if(chkVacunable.isSelected()){
+                gato.setVacunable(chkVacunable.isSelected());
                 String nombreVacuna = txtNombreVacuna.getText().trim();
                 if(nombreVacuna == null || nombreVacuna.isEmpty()){
                     throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");

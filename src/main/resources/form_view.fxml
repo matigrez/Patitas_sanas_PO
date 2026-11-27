@@ -38,7 +38,7 @@
             <Insets bottom="12.0" left="20.0" right="20.0" top="12.0" />
          </padding>
          <children>
-            <Button fx:id="btnGuardar" mnemonicParsing="false" prefWidth="100.0" text="Guardar Ficha" />
+            <Button fx:id="btnGuardar" mnemonicParsing="false" onAction="#registrar" prefWidth="100.0" text="Guardar Ficha" />
             <Button fx:id="btnCancelar" mnemonicParsing="false" prefWidth="100.0" text="Cancelar" />
          </children>
       </HBox>
@@ -135,8 +135,8 @@
                   <VBox prefHeight="200.0" prefWidth="100.0" spacing="4.0" GridPane.columnIndex="2">
                      <children>
                         <Label text="Apto para Vacunar?" />
-                        <CheckBox fx:id="chkVacunable" mnemonicParsing="false" text="Si/No" />
-                        <TextField fx:id="txtNombreVacuna" disable="true" onAction="#actualizarTextField" promptText="Ingrese el nombre de la vacuna" />
+                        <CheckBox fx:id="chkVacunable" mnemonicParsing="false" onAction="#actualizarTextField" text="Si/No" />
+                        <TextField fx:id="txtNombreVacuna" disable="true" promptText="Ingrese el nombre de la vacuna" />
                         <Label text="Especie:" />
                         <ComboBox fx:id="cmbEspecie" maxWidth="1.7976931348623157E308" onAction="#actualizarBox" prefWidth="150.0" promptText="Seleccione..." />
                      </children>
