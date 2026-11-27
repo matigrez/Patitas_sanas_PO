@@ -41,6 +41,8 @@ public class MainController{
     @FXML private Label lblTotalMascotas;
     @FXML private TableView<Mascota> tblMascotas;
     @FXML private TextField txtBuscar;
+    @FXML private Label lblMensaje;
+
     private List<Mascota> listaCompleta = new ArrayList<>();
     private MascotaRepository repository = new MascotaRepository();
 
@@ -90,7 +92,7 @@ public class MainController{
         }
 
         try {
-            repository.eliminar(seleccionada.getCodigo());
+            //repository.eliminar(seleccionada.getCodigo());
             cargarTabla();
             mostrarMensaje("Mascota eliminada con exito!");
         } catch (PersistenciaException e) {
@@ -100,7 +102,7 @@ public class MainController{
     // actualiza la tabla
     private void cargarTabla() {
         try {
-            listaCompleta = repository.obtenerTodos();
+            //listaCompleta = repository.obtenerTodos();
             filtrarTabla();
         } catch (PersistenciaException e) {
             mostrarMensaje("Error al cargar datos: " + e.getMessage());
@@ -151,7 +153,7 @@ public class MainController{
             Scene scene = new Scene(loader.load());
 
             FormController controller = loader.getController();
-            controller.inicializarDatos(repository, mascotaEditar);
+            //controller.inicializarDatos(repository, mascotaEditar);
 
             Stage stage = new Stage();
             stage.setTitle("Formulario Mascota");
@@ -165,6 +167,7 @@ public class MainController{
         }
     }
     //Metodo para mostrar mensajes
+
     private void mostrarMensaje(String texto) {
         if (lblMensaje != null) {
             lblMensaje.setText(texto);
