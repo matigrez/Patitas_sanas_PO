@@ -125,7 +125,7 @@ public class FormController {
         if(especie.equals("Perro")){
             String tamano = cmbTamanoPerro.getValue();
             String adiestramiento = cmbNivelAd.getValue();
-            Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tamano,adiestramiento);
+            Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tutor,tamano,adiestramiento);
             if(chkVacunable.isSelected()){
                 perro.setVacunable(chkVacunable.isSelected());
                 String nombreVacuna = txtNombreVacuna.getText().trim();
@@ -142,7 +142,7 @@ public class FormController {
         } else if (especie.equals("Gato")) {
             String pelaje = cmbTipoPelaje.getValue();
             String estiloVida = cmbEstiloVida.getValue();
-            Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,pelaje,estiloVida);
+            Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,tutor,pelaje,estiloVida);
             if(chkVacunable.isSelected()){
                 gato.setVacunable(chkVacunable.isSelected());
                 String nombreVacuna = txtNombreVacuna.getText().trim();

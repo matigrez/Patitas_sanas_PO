@@ -43,11 +43,11 @@ public class MainController{
 
     @FXML
     private void initialize(){
-        cmbFiltroTipo.setEditable(FXCollections.observableArrayList("Todas las especies","Perro","Gato"));
+        cmbFiltroTipo.setItems(FXCollections.observableArrayList("Todas las especies","Perro","Gato"));
         cmbFiltroTipo.setValue("Todas las especies");
         // 2. Conectar columnas con los getters de Mascota (getCodigo, getTipo, getNombre, etc.)
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
-        colEspecie.setCellValueFactory(new PropertyValueFactory<>("tipo"));
+        colEspecie.setCellValueFactory(new PropertyValueFactory<>("especie"));
         colMascota.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colTutor.setCellValueFactory(new PropertyValueFactory<>("nombreTutor"));
         colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoClinico"));
@@ -114,7 +114,7 @@ public class MainController{
             boolean coincideTexto = texto.isEmpty()
                     || m.getCodigo().toLowerCase().contains(texto)
                     || m.getNombre().toLowerCase().contains(texto)
-                    || m.getTutor().toLowerCase().contains(texto);
+                    || m.getTutorNombre().toLowerCase().contains(texto);
 
             boolean coincideTipo = tipo.equals("Todas las especies")
                     || m.getEspecie().equalsIgnoreCase(tipo);
