@@ -9,7 +9,7 @@ public class Perro extends Mascota implements Vacunable{ ;
     private boolean vacuna;
 
     public Perro(String codigo, String especie, String nombre, int meses, double peso, String estadoClinico,Tutor tutor, String tamano, String adiestramiento) {
-        super(codigo, especie, nombre, meses, peso, estadoClinico);
+        super(codigo, especie, nombre, meses, peso, estadoClinico,tutor);
         setTamano(tamano);
         setAdiestramiento(adiestramiento);
         setVacuna(vacuna);
