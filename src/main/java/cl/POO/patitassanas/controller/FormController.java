@@ -5,10 +5,7 @@ import cl.POO.patitassanas.model.Perro;
 import cl.POO.patitassanas.model.Tutor;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
 public class FormController {
@@ -29,7 +26,10 @@ public class FormController {
     private Button btnGuardar;
 
     @FXML
-    private ComboBox<String> cmbVacuna;
+    private CheckBox chkvacunable;
+
+    @FXML
+    private TextField txtNombreVacuna;
 
     @FXML
     private ComboBox<String> cmbEspecie;
@@ -84,7 +84,6 @@ public class FormController {
         cmbNivelAd.setItems(FXCollections.observableArrayList("Basico","Intermedio","Avanzado"));
         cmbTipoPelaje.setItems(FXCollections.observableArrayList("Corto","Regular","Largo"));
         cmbEstiloVida.setItems(FXCollections.observableArrayList("Outdoor","Indoor"));
-        cmbVacuna.setItems(FXCollections.observableArrayList("Necesita vacuna","No necesita vacuna"));
     }
 
     @FXML
@@ -94,6 +93,11 @@ public class FormController {
         // Los dos grupos permanecen visibles: no usamos setVisible ni setManaged.
         boxPerro.setDisable(!"Perro".equals(tipo));
         boxGato.setDisable(!"Gato".equals(tipo));
+    }
+
+    @FXML
+    private void actualizarTextField(){
+        txtNombreVacuna.setDisable(!chkvacunable.isSelected());
     }
 
 
@@ -107,15 +111,27 @@ public class FormController {
         String nombreMascota = txtNombremascota.getText();
         int meses = calcularMeses();
         double peso = calcularPeso();
-        String vacuna = cmbVacuna.getValue();
+        String estado = cmbEstado.getValue();
         String especie = cmbEspecie.getValue();
         if(especie.equals("Perro")){
             String tamano = cmbTamanoPerro.getValue();
             String adiestramiento = cmbNivelAd.getValue();
+            Perro perro = new Perro(nombreMascota,meses,peso,estado,tamano,adiestramiento);
+            if(chkvacunable.isSelected()){
+                perro.setVacunable(chkvacunable.isSelected());
+                perro.aplicarVacuna(txtNombreVacuna.getText());
+            }
+            tutor.agregarMascotas(perro);
 
-            
         } else if (especie.equals("Gato")) {
-            
+            String pelaje = cmbTipoPelaje.getValue();
+            String estiloVida = cmbEstiloVida.getValue();
+            Gato gato = new Gato(nombreMascota,meses,peso,estado,pelaje,estiloVida);
+            if(chkvacunable.isSelected()){
+                gato.setVacunable(chkvacunable.isSelected());
+                gato.aplicarVacuna(txtNombreVacuna.getText());
+            }
+            tutor.agregarMascotas(gato);
         }else{
             throw new IllegalArgumentException("Especie no puede estar nula");
         }
