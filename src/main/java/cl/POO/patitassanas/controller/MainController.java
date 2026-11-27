@@ -1,7 +1,10 @@
 package cl.POO.patitassanas.controller;
 
+import cl.POO.patitassanas.model.Gato;
 import cl.POO.patitassanas.model.Mascota;
-import repository.PersistenciaException;
+import cl.POO.patitassanas.model.Perro;
+import cl.POO.patitassanas.repository.MascotaRepository;
+import cl.POO.patitassanas.repository.PersistenciaException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -39,6 +42,7 @@ public class MainController{
     @FXML private TableView<Mascota> tblMascotas;
     @FXML private TextField txtBuscar;
     private List<Mascota> listaCompleta = new ArrayList<>();
+    private MascotaRepository repository = new MascotaRepository();
 
     @FXML
     private void initialize(){
@@ -130,7 +134,12 @@ public class MainController{
     private void actualizarTotales(List<Mascota> lista) {
         double totalCosto = 0;
         for (Mascota m : lista) {
-            totalCosto = totalCosto + m.calcularCostoServicio();
+            if(m instanceof Perro){
+                totalCosto = totalCosto + m.calcularPrecio(((Perro) m).getTamano());
+            } else if (m instanceof Gato) {
+                totalCosto = totalCosto + m.calcularPrecio(((Gato) m).getEstiloVida());
+            }
+
         }
         lblTotalMascotas.setText("Total Mascotas: " + lista.size());
         lblTotalCosto.setText("Total Estimado: $" + (int) totalCosto);
