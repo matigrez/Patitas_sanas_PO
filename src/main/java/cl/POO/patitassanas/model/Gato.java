@@ -9,15 +9,8 @@ public class Gato extends Mascota implements Vacunable{
     private String pelaje;
     private boolean vacuna;
 
-    public Gato(String nombre, int meses, double peso, String estadoClinico, String estiloVida, String pelaje) {
-        super(nombre, meses, peso, estadoClinico);
-        setEstiloVida(estiloVida);
-        setPelaje(pelaje);
-        setVacuna(vacuna);
-    }
-
-    public Gato(int id, String nombre, int meses, double peso, String estadoClinico, String estiloVida, String pelaje) {
-        super(id, nombre, meses, peso, estadoClinico);
+    public Gato(String codigo, String nombre, int meses, double peso, String estadoClinico, String estiloVida, String pelaje) {
+        super(codigo, nombre, meses, peso, estadoClinico);
         setEstiloVida(estiloVida);
         setPelaje(pelaje);
         setVacuna(vacuna);

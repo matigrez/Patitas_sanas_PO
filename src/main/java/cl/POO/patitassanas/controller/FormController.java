@@ -108,6 +108,7 @@ public class FormController {
         String correo = txtCorreo.getText();
         String telefono = txtTelefono.getText();
         Tutor tutor = new Tutor(rut,nombreTutor,correo,telefono);
+        String codigo = txtCodeficha.getText();
         String nombreMascota = txtNombremascota.getText();
         int meses = calcularMeses();
         double peso = calcularPeso();
@@ -116,7 +117,7 @@ public class FormController {
         if(especie.equals("Perro")){
             String tamano = cmbTamanoPerro.getValue();
             String adiestramiento = cmbNivelAd.getValue();
-            Perro perro = new Perro(nombreMascota,meses,peso,estado,tamano,adiestramiento);
+            Perro perro = new Perro(codigo,nombreMascota,meses,peso,estado,tamano,adiestramiento);
             if(chkvacunable.isSelected()){
                 perro.setVacunable(chkvacunable.isSelected());
                 perro.aplicarVacuna(txtNombreVacuna.getText());
@@ -126,7 +127,7 @@ public class FormController {
         } else if (especie.equals("Gato")) {
             String pelaje = cmbTipoPelaje.getValue();
             String estiloVida = cmbEstiloVida.getValue();
-            Gato gato = new Gato(nombreMascota,meses,peso,estado,pelaje,estiloVida);
+            Gato gato = new Gato(codigo,nombreMascota,meses,peso,estado,pelaje,estiloVida);
             if(chkvacunable.isSelected()){
                 gato.setVacunable(chkvacunable.isSelected());
                 String nombreVacuna = txtNombreVacuna.getText().trim();

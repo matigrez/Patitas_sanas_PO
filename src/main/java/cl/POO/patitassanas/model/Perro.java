@@ -9,19 +9,13 @@ public class Perro extends Mascota implements Vacunable{
     private String adiestramiento;
     private boolean vacuna;
 
-    public Perro(String nombre, int meses, double peso, String estadoClinico, String tamano, String adiestramiento) {
-        super(nombre, meses, peso, estadoClinico);
+    public Perro(String codigo, String nombre, int meses, double peso, String estadoClinico, String tamano, String adiestramiento) {
+        super(codigo, nombre, meses, peso, estadoClinico);
         setTamano(tamano);
         setAdiestramiento(adiestramiento);
         setVacuna(vacuna);
     }
 
-    public Perro(int id, String nombre, int meses, double peso, String estadoClinico, String tamano, String adiestramiento, boolean vacuna) {
-        super(id, nombre, meses, peso, estadoClinico);
-        setTamano(tamano);
-        setAdiestramiento(adiestramiento);
-        setVacuna(vacuna);
-    }
 
     public String getTamano() {
         return tamano;

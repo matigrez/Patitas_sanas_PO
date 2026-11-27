@@ -3,14 +3,15 @@ package cl.POO.patitassanas.model;
 import java.util.ArrayList;
 
 public abstract class Mascota implements Vacunable{
-    private int id;
+    private String codigo;
     private String nombre;
     private int meses;
     private double peso;
     private String estadoClinico;
     private ArrayList<String> vacunas;
 
-    public Mascota(String nombre, int meses, double peso, String estadoClinico) {
+    public Mascota(String codigo, String nombre, int meses, double peso, String estadoClinico) {
+
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
@@ -18,24 +19,16 @@ public abstract class Mascota implements Vacunable{
         this.vacunas = new ArrayList<>();
     }
 
-    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico) {
-        setId(id);
-        setNombre(nombre);
-        setMeses(meses);
-        setPeso(peso);
-        setEstadoClinico(estadoClinico);
-        this.vacunas = new ArrayList<>();
+
+    public String getCodigo() {
+        return codigo;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        if(id < 0){
-            throw new IllegalArgumentException("El id no puede ser menor a 0");
+    public void setCodigo(String codigo) {
+        if(codigo == null || codigo.isEmpty()){
+            throw new IllegalArgumentException("El codigo no puede ser nulo.");
         }
-        this.id = id;
+        this.codigo = codigo;
     }
 
     public String getNombre() {
