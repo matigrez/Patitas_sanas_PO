@@ -3,6 +3,7 @@ package cl.POO.patitassanas.controller;
 import cl.POO.patitassanas.model.Gato;
 import cl.POO.patitassanas.model.Mascota;
 import cl.POO.patitassanas.model.Perro;
+import dao.PersistenciaException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
