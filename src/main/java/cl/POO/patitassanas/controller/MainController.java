@@ -18,6 +18,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -42,103 +43,127 @@ public class MainController{
 
     @FXML
     private void initialize(){
-        //Se llena el combobox con las opciones presentes
-        cmbFiltroTipo.setItems(FXCollections.observableArrayList("Todas las especies","Perro","Gato"));
+        cmbFiltroTipo.setEditable(FXCollections.observableArrayList("Todas las especies","Perro","Gato"));
         cmbFiltroTipo.setValue("Todas las especies");
-        //Se conectan las columnas con la clase mascota
+        // 2. Conectar columnas con los getters de Mascota (getCodigo, getTipo, getNombre, etc.)
         colCodigo.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         colEspecie.setCellValueFactory(new PropertyValueFactory<>("tipo"));
         colMascota.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colTutor.setCellValueFactory(new PropertyValueFactory<>("nombreTutor"));
-        colEstado.setCellValueFactory(new PropertyValueFactory<>("estado"));
-        colCosto.setCellValueFactory(new PropertyValueFactory<>("costo"));
+        colEstado.setCellValueFactory(new PropertyValueFactory<>("estadoClinico"));
+        colCosto.setCellValueFactory(new PropertyValueFactory<>("costoServicio"));
+
+        // 3. Filtro en tiempo real al escribir o cambiar el ComboBox
+        txtBuscar.textProperty().addListener((obs, anterior, actual) -> filtrarTabla());
+        cmbFiltroTipo.valueProperty().addListener((obs, anterior, actual) -> filtrarTabla());
+
+        cargarTabla();
     }
 
-    @FXML private void onNuevo(){
-            abrirFormulario(null);
+    //
+    @FXML
+    private void onNuevo() {
+        abrirFormulario(null);
     }
-    @FXML private void onEditar(){
-        Mascota seleccionada =  tblMascotas.getSelectionModel().getSelectedItem();
-        if(seleccionada == null){
-            mostrarMensaje("Seleccionada una mascota para editar");
+
+    //
+    @FXML
+    private void onEditar() {
+        Mascota seleccionada = tblMascotas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            mostrarMensaje("Selecciona una mascota para editar.");
             return;
         }
         abrirFormulario(seleccionada);
     }
-    @FXML private void onEliminar(){
-        Mascota seleccionada =  tblMascotas.getSelectionModel().getSelectedItem();
-        if (seleccionada == null){
-            mostrarMensaje("Selecciona una mascota para eliminar");
+
+    // 
+    @FXML
+    private void onEliminar() {
+        Mascota seleccionada = tblMascotas.getSelectionModel().getSelectedItem();
+        if (seleccionada == null) {
+            mostrarMensaje("Selecciona una mascota para eliminar.");
             return;
         }
-        try{
-            repository.eliminar(seleccionada.getId());
+
+        try {
+            repository.eliminar(seleccionada.getCodigo());
             cargarTabla();
             mostrarMensaje("Mascota eliminada con exito!");
         } catch (PersistenciaException e) {
-            mostrarMensaje("Error al eliminar: "+ e.getMessage());
+            mostrarMensaje("Error al eliminar: " + e.getMessage());
         }
     }
-    private void cargarTabla(){
-        try{
+
+    private void cargarTabla() {
+        try {
             listaCompleta = repository.obtenerTodos();
             filtrarTabla();
         } catch (PersistenciaException e) {
-            mostrarMensaje("Error al cargar datos:"+e.getMessage());
+            mostrarMensaje("Error al cargar datos: " + e.getMessage());
         }
     }
-    private void filtrarTabla(){
+
+    private void filtrarTabla() {
         String texto = txtBuscar.getText().trim().toLowerCase();
         String tipo = cmbFiltroTipo.getValue();
+
         ObservableList<Mascota> filtradas = FXCollections.observableArrayList();
 
-        for (Mascota mascota : listaCompleta){
+        for (Mascota m : listaCompleta) {
             boolean coincideTexto = texto.isEmpty()
-                    ||mascota.getCodigo().toLowerCase().contains(texto)
-                    ||mascota.getNombre().toLowerCase().contains(texto)
-                    ||mascota.getTutor().toLowerCase().contains(texto);
+                    || m.getCodigo().toLowerCase().contains(texto)
+                    || m.getNombre().toLowerCase().contains(texto)
+                    || m.getTutor().toLowerCase().contains(texto);
+
             boolean coincideTipo = tipo.equals("Todas las especies")
-                    ||mascota.getTipo().equalsIgnoreCase(tipo);
-            if(coincideTexto && coincideTipo){
-                filtradas.add(mascota);
+                    || m.getEspecie().equalsIgnoreCase(tipo);
+
+            if (coincideTexto && coincideTipo) {
+                filtradas.add(m);
             }
         }
+
         tblMascotas.setItems(filtradas);
         actualizarTotales(filtradas);
     }
-    private  void actualizarTotales(ObservableList<Mascota> lista{
+
+    private void actualizarTotales(List<Mascota> lista) {
         double totalCosto = 0;
-        for (Mascota mascota : lista){
-            totalCosto = totalCosto + mascota.calcularPrecio();
+        for (Mascota m : lista) {
+            totalCosto = totalCosto + m.calcularCostoServicio();
         }
-        lblTotalMascotas.setText("Total Mascotas:"+lista.size());
-        lblTotalCosto.setText("Total Costo:"+(int)totalCosto);
+        lblTotalMascotas.setText("Total Mascotas: " + lista.size());
+        lblTotalCosto.setText("Total Estimado: $" + (int) totalCosto);
     }
-    private void abrirFormulario(Mascota mascotaEditar){
-        try{
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/form_view.fxml"));
-            Scene scene = new Scene(fxmlLoader.load());
-            FormController controller = fxmlLoader.getController();
-            controller.inicializarDatos(repository,mascotaEditar);
+
+    private void abrirFormulario(Mascota mascotaEditar) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/form_view.fxml"));
+            Scene scene = new Scene(loader.load());
+
+            FormController controller = loader.getController();
+            controller.inicializarDatos(repository, mascotaEditar);
 
             Stage stage = new Stage();
-            stage.setTitle("Formulario de Mascota");
-            stage.setScene(scene);
+            stage.setTitle("Formulario Mascota");
             stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setScene(scene);
             stage.showAndWait();
+
             cargarTabla();
         } catch (IOException e) {
-            mostrarMensaje("Error al abrir el formulario:"+e.getMessage());
+            mostrarMensaje("Error al abrir formulario: " + e.getMessage());
         }
     }
-    private void mostrarMensaje(String texto){
-        if(lblMensaje != null){
+
+    private void mostrarMensaje(String texto) {
+        if (lblMensaje != null) {
             lblMensaje.setText(texto);
-        }else{
+        } else {
             System.out.println(texto);
         }
-
     }
-
-
 }
+
+

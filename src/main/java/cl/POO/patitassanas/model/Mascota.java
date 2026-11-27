@@ -3,14 +3,17 @@ package cl.POO.patitassanas.model;
 import java.util.ArrayList;
 
 public abstract class Mascota implements Vacunable{
-    private int id;
+    private String codigo;
+    private String especie;
     private String nombre;
     private int meses;
     private double peso;
     private String estadoClinico;
     private ArrayList<String> vacunas;
 
-    public Mascota(String nombre, int meses, double peso, String estadoClinico) {
+    public Mascota(String codigo,String especie, String nombre, int meses, double peso, String estadoClinico) {
+        setCodigo(codigo);
+        setEspecie(especie);
         setNombre(nombre);
         setMeses(meses);
         setPeso(peso);
@@ -18,24 +21,26 @@ public abstract class Mascota implements Vacunable{
         this.vacunas = new ArrayList<>();
     }
 
-    public Mascota(int id, String nombre, int meses, double peso, String estadoClinico) {
-        setId(id);
-        setNombre(nombre);
-        setMeses(meses);
-        setPeso(peso);
-        setEstadoClinico(estadoClinico);
-        this.vacunas = new ArrayList<>();
+    public String getEspecie() {
+        return especie;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        if(id < 0){
-            throw new IllegalArgumentException("El id no puede ser menor a 0");
+    public void setEspecie(String especie) {
+        if(especie == null || especie.isEmpty()){
+            throw new IllegalArgumentException("La especie no debe ser nulo.");
         }
-        this.id = id;
+        this.especie = especie;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        if(codigo == null || codigo.isEmpty()){
+            throw new IllegalArgumentException("El codigo no puede ser nulo.");
+        }
+        this.codigo = codigo;
     }
 
     public String getNombre() {
