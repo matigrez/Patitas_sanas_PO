@@ -13,74 +13,30 @@ import java.util.ArrayList;
 
 public class FormController {
 
-    @FXML
-    private VBox boxPerro;
-
-    @FXML
-    private VBox boxGato;
-
-    @FXML
-    private Button btnBuscarTutor;
-
-    @FXML
-    private Button btnCancelar;
-
-    @FXML
-    private Button btnGuardar;
-
-    @FXML
-    private CheckBox chkVacunable;
-
-    @FXML
-    private TextField txtNombreVacuna;
-
-    @FXML
-    private ComboBox<String> cmbEspecie;
-
-    @FXML
-    private ComboBox<String> cmbEstado;
-
-    @FXML
-    private ComboBox<String> cmbEstiloVida;
-
-    @FXML
-    private ComboBox<String> cmbNivelAd;
-
-    @FXML
-    private ComboBox<String> cmbTamanoPerro;
-
-    @FXML
-    private ComboBox<String> cmbTipoPelaje;
-
-    @FXML
-    private Label lblTituloFormulario;
-
-    @FXML
-    private TextField txtCodeficha;
-
-    @FXML
-    private TextField txtCorreo;
-
-    @FXML
-    private TextField txtEdadmeses;
-
-    @FXML
-    private TextField txtNombreTutor;
-
-    @FXML
-    private TextField txtNombremascota;
-
-    @FXML
-    private TextField txtPeso;
-
-    @FXML
-    private TextField txtRutTutor;
-
-    @FXML
-    private TextField txtTelefono;
-
+    @FXML private VBox boxPerro;
+    @FXML private VBox boxGato;
+    @FXML private Button btnBuscarTutor;
+    @FXML private Button btnCancelar;
+    @FXML private Button btnGuardar;
+    @FXML private CheckBox chkVacunable;
+    @FXML private TextField txtNombreVacuna;
+    @FXML private ComboBox<String> cmbEspecie;
+    @FXML private ComboBox<String> cmbEstado;
+    @FXML private ComboBox<String> cmbEstiloVida;
+    @FXML private ComboBox<String> cmbNivelAd;
+    @FXML private ComboBox<String> cmbTamanoPerro;
+    @FXML private ComboBox<String> cmbTipoPelaje;
+    @FXML private Label lblTituloFormulario;
+    @FXML private TextField txtCodeficha;
+    @FXML private TextField txtCorreo;
+    @FXML private TextField txtEdadmeses;
+    @FXML private TextField txtNombreTutor;
+    @FXML private TextField txtNombremascota;
+    @FXML private TextField txtPeso;
+    @FXML private TextField txtRutTutor;
+    @FXML private TextField txtTelefono;
+    @FXML private Label lblError;
     private Mascota mascotaRegistrada;
-
     private Tutor tutorRegistrado;
 
     @FXML
@@ -94,6 +50,7 @@ public class FormController {
         boxPerro.setDisable(true);
         boxGato.setDisable(true);
         txtNombreVacuna.setDisable(true);
+        lblError.setText("");
     }
 
     @FXML
@@ -111,53 +68,119 @@ public class FormController {
 
     @FXML
     public void registrar(){
-        String rut = txtRutTutor.getText();
-        String nombreTutor = txtNombreTutor.getText();
-        String correo = txtCorreo.getText();
-        String telefono = txtTelefono.getText();
-        Tutor tutor = new Tutor(rut,nombreTutor,correo,telefono);
-        String codigo = txtCodeficha.getText();
-        String nombreMascota = txtNombremascota.getText();
-        int meses = calcularMeses();
-        double peso = calcularPeso();
-        String estado = cmbEstado.getValue();
-        String especie = cmbEspecie.getValue();
-        if(especie.equals("Perro")){
-            String tamano = cmbTamanoPerro.getValue();
-            String adiestramiento = cmbNivelAd.getValue();
-            Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tutor,tamano,adiestramiento);
-            if(chkVacunable.isSelected()){
-                perro.setVacunable(chkVacunable.isSelected());
-                String nombreVacuna = txtNombreVacuna.getText().trim();
-                if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
-                    throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");
-                }
-                perro.aplicarVacuna(txtNombreVacuna.getText());
-
+        lblError.setText("");
+        try {
+            String rut = txtRutTutor.getText();
+            if (rut == null || rut.isBlank()) {
+                lblError.setText("El Rut del tutor es obligatorio");
+                return;
             }
-            tutor.agregarMascotas(perro);
-            this.tutorRegistrado = tutor;
-            this.mascotaRegistrada = perro;
-
-        } else if (especie.equals("Gato")) {
-            String pelaje = cmbTipoPelaje.getValue();
-            String estiloVida = cmbEstiloVida.getValue();
-            Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,tutor,pelaje,estiloVida);
-            if(chkVacunable.isSelected()){
-                gato.setVacunable(chkVacunable.isSelected());
-                String nombreVacuna = txtNombreVacuna.getText().trim();
-                if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
-                    throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");
-                }
-                gato.aplicarVacuna(nombreVacuna);
+            String nombreTutor = txtNombreTutor.getText();
+            if (nombreTutor == null || nombreTutor.isBlank()) {
+                lblError.setText("El nombre del tutor es obligatorio");
+                return;
             }
-            tutor.agregarMascotas(gato);
-            this.tutorRegistrado = tutor;
-            this.mascotaRegistrada = gato;
-        }else{
-            throw new IllegalArgumentException("Especie no puede estar nula");
+            String correo = txtCorreo.getText();
+            if (correo == null || correo.isBlank()) {
+                lblError.setText("El correo del tutor es obligatorio");
+                return;
+            }
+            String telefono = txtTelefono.getText();
+            if (telefono == null || telefono.isBlank()) {
+                lblError.setText("El telefono del tutor es obligatorio");
+                return;
+            }
+            Tutor tutor = new Tutor(rut,nombreTutor,correo,telefono);
+            String codigo = txtCodeficha.getText();
+            if (codigo == null || codigo.isBlank()) {
+                lblError.setText("El codigo del tutor es obligatorio");
+                return;
+            }
+            String nombreMascota = txtNombremascota.getText();
+            if (nombreMascota == null || nombreMascota.isBlank()) {
+                lblError.setText("El nombre del tutor es obligatorio");
+                return;
+            }
+
+            if (txtEdadmeses.getText() == null || txtEdadmeses.getText().isBlank()) {
+                lblError.setText("El edad en meses es obligatorio");
+                return;
+            }
+            int meses = calcularMeses();
+
+            if (txtPeso.getText() == null || txtPeso.getText().isBlank()) {
+                lblError.setText("El peso es obligatorio");
+                return;
+            }
+            double peso = calcularPeso();
+
+            String estado = cmbEstado.getValue();
+            if  (estado == null || estado.isBlank()) {
+                lblError.setText("El estado del tutor es obligatorio");
+                return;
+            }
+            String especie = cmbEspecie.getValue();
+            if (especie == null || especie.isBlank()) {
+                lblError.setText("El especie es obligatorio");
+                return;
+            }
+            if(especie.equals("Perro")){
+                String tamano = cmbTamanoPerro.getValue();
+                if (tamano == null || tamano.isBlank()) {
+                    lblError.setText("El tamano es obligatorio");
+                    return;
+                }
+                String adiestramiento = cmbNivelAd.getValue();
+                if (adiestramiento == null || adiestramiento.isBlank()) {
+                    lblError.setText("El nivel adiestra es obligatorio");
+                    return;
+                }
+                Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tutor,tamano,adiestramiento);
+                if(chkVacunable.isSelected()){
+                    perro.setVacunable(chkVacunable.isSelected());
+                    String nombreVacuna = txtNombreVacuna.getText().trim();
+                    if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
+                        lblError.setText("El nombre de la vacuna no puede ser nulo.");
+                        return;
+                    }
+                    perro.aplicarVacuna(txtNombreVacuna.getText());
+
+                }
+                tutor.agregarMascotas(perro);
+                this.tutorRegistrado = tutor;
+                this.mascotaRegistrada = perro;
+
+            } else if (especie.equals("Gato")) {
+                String pelaje = cmbTipoPelaje.getValue();
+                if (pelaje == null || pelaje.isBlank()) {
+                    lblError.setText("El tipo de pelaje es obligatorio");
+                    return;
+                }
+                String estiloVida = cmbEstiloVida.getValue();
+                if (estiloVida == null || estiloVida.isBlank()) {
+                    lblError.setText("El estilo vida es obligatorio");
+                    return;
+                }
+                Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,tutor,pelaje,estiloVida);
+                if(chkVacunable.isSelected()){
+                    gato.setVacunable(chkVacunable.isSelected());
+                    String nombreVacuna = txtNombreVacuna.getText().trim();
+                    if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
+                        lblError.setText("El nombre de la vacuna no puede ser nulo.");
+                        return;
+                    }
+                    gato.aplicarVacuna(nombreVacuna);
+                }
+                tutor.agregarMascotas(gato);
+                this.tutorRegistrado = tutor;
+                this.mascotaRegistrada = gato;
+            }else{
+                throw new IllegalArgumentException("Especie no puede estar nula");
+            }
+
+        } catch (IllegalArgumentException e) {
+            lblError.setText(e.getMessage());
         }
-
     }
 
     public int calcularMeses(){
