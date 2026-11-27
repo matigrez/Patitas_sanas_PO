@@ -129,7 +129,11 @@ public class FormController {
             Gato gato = new Gato(nombreMascota,meses,peso,estado,pelaje,estiloVida);
             if(chkvacunable.isSelected()){
                 gato.setVacunable(chkvacunable.isSelected());
-                gato.aplicarVacuna(txtNombreVacuna.getText());
+                String nombreVacuna = txtNombreVacuna.getText().trim();
+                if(nombreVacuna == null || nombreVacuna.isEmpty()){
+                    throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");
+                }
+                gato.aplicarVacuna(nombreVacuna);
             }
             tutor.agregarMascotas(gato);
         }else{
