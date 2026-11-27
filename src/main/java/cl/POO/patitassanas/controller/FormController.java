@@ -1,12 +1,15 @@
 package cl.POO.patitassanas.controller;
 
 import cl.POO.patitassanas.model.Gato;
+import cl.POO.patitassanas.model.Mascota;
 import cl.POO.patitassanas.model.Perro;
 import cl.POO.patitassanas.model.Tutor;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
+
+import java.util.ArrayList;
 
 public class FormController {
 
@@ -76,9 +79,13 @@ public class FormController {
     @FXML
     private TextField txtTelefono;
 
+    private Mascota mascotaRegistrada;
+
+    private Tutor tutorRegistrado;
+
     @FXML
     public void initialize(){
-        cmbEspecie.setItems(FXCollections.observableArrayList(Perro.especie, Gato.especie));
+        cmbEspecie.setItems(FXCollections.observableArrayList("Perro", "Gato"));
         cmbEstado.setItems(FXCollections.observableArrayList("Ingresado", "En Consulta", "En Observacion", "Alta Medica"));
         cmbTamanoPerro.setItems(FXCollections.observableArrayList("Pequeño","Mediano","Grande"));
         cmbNivelAd.setItems(FXCollections.observableArrayList("Basico","Intermedio","Avanzado"));
@@ -118,26 +125,35 @@ public class FormController {
         if(especie.equals("Perro")){
             String tamano = cmbTamanoPerro.getValue();
             String adiestramiento = cmbNivelAd.getValue();
-            Perro perro = new Perro(codigo,nombreMascota,meses,peso,estado,tamano,adiestramiento);
+            Perro perro = new Perro(codigo, especie, nombreMascota,meses,peso,estado,tamano,adiestramiento);
             if(chkVacunable.isSelected()){
                 perro.setVacunable(chkVacunable.isSelected());
+                String nombreVacuna = txtNombreVacuna.getText().trim();
+                if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
+                    throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");
+                }
                 perro.aplicarVacuna(txtNombreVacuna.getText());
+
             }
             tutor.agregarMascotas(perro);
+            this.tutorRegistrado = tutor;
+            this.mascotaRegistrada = perro;
 
         } else if (especie.equals("Gato")) {
             String pelaje = cmbTipoPelaje.getValue();
             String estiloVida = cmbEstiloVida.getValue();
-            Gato gato = new Gato(codigo,nombreMascota,meses,peso,estado,pelaje,estiloVida);
+            Gato gato = new Gato(codigo, especie, nombreMascota,meses,peso,estado,pelaje,estiloVida);
             if(chkVacunable.isSelected()){
                 gato.setVacunable(chkVacunable.isSelected());
                 String nombreVacuna = txtNombreVacuna.getText().trim();
-                if(nombreVacuna == null || nombreVacuna.isEmpty()){
+                if(nombreVacuna.isBlank() || nombreVacuna.isEmpty()){
                     throw new IllegalArgumentException("El nombre de la vacuna no puede ser nulo.");
                 }
                 gato.aplicarVacuna(nombreVacuna);
             }
             tutor.agregarMascotas(gato);
+            this.tutorRegistrado = tutor;
+            this.mascotaRegistrada = gato;
         }else{
             throw new IllegalArgumentException("Especie no puede estar nula");
         }
@@ -160,6 +176,14 @@ public class FormController {
             txtPeso.requestFocus();
             throw new IllegalArgumentException("El peso debe estar entre 0 y 100 Kg");
         }
+    }
+
+    public Tutor getTutorRegistrado(){
+        return tutorRegistrado;
+    }
+
+    public Mascota getMascotaRegistrada(){
+        return mascotaRegistrada;
     }
 
 }
